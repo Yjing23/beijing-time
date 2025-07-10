@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>北京时间</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #time {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="time"></div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            
+            // 获取北京时间（UTC+8）
+            const beijingOffset = 8 * 60 * 60 * 1000;
+            const beijingTime = new Date(now.getTime() + beijingOffset);
+            
+            // 格式化时间为HH:MM:SS
+            const hours = String(beijingTime.getUTCHours()).padStart(2, '0');
+            const minutes = String(beijingTime.getUTCMinutes()).padStart(2, '0');
+            const seconds = String(beijingTime.getUTCSeconds()).padStart(2, '0');
+            
+            document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        // 初始更新时间
+        updateTime();
+        // 每秒更新一次
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
